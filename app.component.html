@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div fxLayoutAlign="space-between center" class="nav-buttons">
+      <span class="text-wrap" [routerLink]="['/home']">Angular Firebase Demo Application</span>
+      <div class="button-row" *ngIf="!(authService.user$ |async)?.uid">
+        <button mat-button [routerLink]="['/home']">Home</button>
+        <button mat-button (click)="authService.loginUser()">Login</button>
+      </div>
+      <div class="button-row" *ngIf="(authService.user$ |async)?.uid">
+        <button mat-button [routerLink]="['/home']">Home</button>
+        <button mat-button [routerLink]="['/company-list']" routerLinkActive="router-link-active">Companies</button>
+        <button mat-button [routerLink]="['/contact-list']">Contacts</button>
+        <button mat-button (click)="authService.logoutUser()">Logout</button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div>
+  <div fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%" class="container">
+    <!-- <app-company></app-company> -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

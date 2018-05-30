@@ -1,0 +1,24 @@
+<!-- {{ companyList | json}} -->
+
+<mat-card>
+    <mat-card-header>
+        <h1>
+            {{isNewCompany ? 'Add Company':'Edit Company'}}
+        </h1>
+    </mat-card-header>
+    <mat-card-content *ngIf="company$ | async as company">
+        <form class="example-form">
+            <!-- {{company |json}} -->
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" name="Name" type="text" [(ngModel)]="company.name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Phone Number" name="phone" type="text" [(ngModel)]="company.phone">
+            </mat-form-field>
+            <div class="button-row">
+                <button mat-raised-button (click)="saveCompnay(company)">Save</button>
+                <button mat-raised-button (click)="removeCompnay(company)" *ngIf="!isNewCompany">Delete</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,13 @@
+<div fxLayoutAlign="space-between center">
+<h1>Company List</h1>
+<button mat-fab color="primary" [routerLink]="['/company-edit/new']" >
+  <mat-icon aria-label="Add New Company">add</mat-icon>
+</button>
+</div>
+<!-- {{CompanyList$ | async |json}} -->
+<mat-card *ngFor="let company of CompanyList$ | async" fxLayoutAlign="space-between center">
+  <span>{{company.name}}</span>
+  <button mat-button [routerLink]="['/company-edit',company.$key]">
+    <mat-icon aria-label="edit Company">edit</mat-icon>
+  </button>       
+</mat-card>
